@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12">
+      <h1>Lancament</h1>
+    </div>
+  <div class="p-col-12 p-fluid">
+    <label >Description</label>
+    <input type="text" pInputText>
+  </div>
+
+  <div class="p-col-12">
+    <label  style="display: block;">Venciment</label>
+    <input type="text" pInputText>
+    <label >until</label>
+    <input type="text" pInputText>
+  </div>
+
+  <div class="p-col-12">
+    <button pButton type="submit" label="Search"></button>
+  </div>
+
+  </div>
+
+
+
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value] = 'lacaments' [paginator]='true' [rows]='2' [responsive] ='true'>
+        <ng-template pTemplate='header'>
+          <tr>
+          <th>Person</th>
+          <th>Description</th>
+          <th class="col-data-header">Venciment</th>
+          <th class="col-data-header">Payment</th>
+          <th class="col-value-header">Value</th>
+          <th class="col-action-header" icon='fa fa-brain'></th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate='body' let-lacament>
+          <tr>
+          <td><span class="p-column-title"> {{lacament.pessoa}}</span> </td>
+          <td><span class="p-column-title">{{lacament.descricao}}</span></td>
+          <td class="col-data-content">{{lacament.dataVencimento}}<span class="p-column-title"></span></td>
+          <td class="col-data-content">{{lacament.dataPagamento}}<span class="p-column-title"></span></td>
+          <td class="col-value-content" [ngStyle] ='{color:lacament.tipo === "DESPESA" ?"red":"blue"}'>
+            <span class="p-column-title">{{lacament.valor}}</span>
+          </td>
+          <td class="col-action-body">
+            <a pButton icon='fa-pencil' pTooltip="Editar" tooltipPosition='top'></a>
+            <button pButton icon='pi pi-trash' pTooltip='Excluir' tooltipPosition='top'></button>
+          </td>
+        </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="p-col-12">
+    <a pButton label='New Lacament'></a>
+
+  </div>
+  </div>
+
