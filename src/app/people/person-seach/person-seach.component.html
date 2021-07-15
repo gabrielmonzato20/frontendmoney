@@ -1,0 +1,27 @@
+<div class="container">
+<form (ngSubmit)="search()">
+
+<div class="ui-grid">
+<div class='p-col-12'>
+<h1> Person </h1>
+
+</div>
+<div class="p-col-12 p-fluid">
+<label>Name</label>
+<input type='text' pInputText name="name" [(ngModel)]="filter.name">
+</div>
+<div class="p-col-12">
+<button pButton type="sunmmit" label="Search"></button>
+</div>
+</div>
+</form>
+ <div class="p-grid">
+    <div class="p-col-12">
+     <app-person-grid [json]="persons" [totRecords]="totRecords" [page]="filter.page" [RecordsPerPage]="filter.itensPerPage" (methodLazy)="lazyPage($event)" (deleteMethod) = "delete($event)" (changeStatus)="changeStatus($event)"></app-person-grid>
+    </div>
+  </div>
+  <div class="p-col-12">
+    <a pButton label='New Person'></a>
+
+  </div>
+</div>

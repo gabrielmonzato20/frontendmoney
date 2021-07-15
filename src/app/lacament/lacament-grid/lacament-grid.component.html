@@ -1,0 +1,40 @@
+ <p-table [value] = 'json' [paginator]='true' [rows]='RecordsperPage'
+ [lazy]='true' [totalRecords]="totalRecords" [responsive] ='true'
+  (onLazyLoad)="changePage($event)" #table>
+        <ng-template pTemplate='header'>
+          <tr>
+          <th>Person</th>
+          <th>Description</th>
+          <th class="col-data-header">Venciment</th>
+          <th class="col-data-header">Payment</th>
+          <th class="col-value-header">Value</th>
+          <th class="col-action-header" >Action</th>
+
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate='body' let-lacament>
+          <tr>
+          <td><span class="p-column-title"> Pessoal</span>{{lacament.person}} </td>
+          <td><span class="p-column-title">Description</span>{{lacament.desc}}</td>
+          <td class="col-data-content"><span class="p-column-title">UntilDate</span>{{lacament.datevenc | date:short}}</td>
+          <td class="col-data-content"><span class="p-column-title">PaymentDate</span>{{lacament.datepay | date:short}}</td>
+          <td class="col-value-content" [ngStyle] ='{color:lacament.type === "DESPESA" ?"red":"blue"}'>
+            <span class="p-column-title">Value</span>
+            {{lacament.value}}
+          </td>
+          <td class="col-action-body">
+
+            <a  pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition='top'></a>
+            <button pButton icon='pi pi-trash' pTooltip='Excluir' tooltipPosition='top' (click)="delete(lacament)"></button>
+          </td>
+        </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="6">
+      Nenhum lançamento encontrado
+    </td>
+  </tr>
+</ng-template>
+      </p-table>

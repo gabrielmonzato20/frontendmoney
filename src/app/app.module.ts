@@ -1,31 +1,31 @@
+import { CoreModule } from './core/core.module';
+import { PeopleModule } from './people/people.module';
+import { LacamentModule } from './lacament/lacament.module';
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button'
-import{TableModule} from 'primeng/table'
-import{TooltipModule} from 'primeng/tooltip';
-import { LacamentSeachComponent } from './lacament-seach/lacament-seach.component';
-import { HeaderBarComponent } from './header-bar/header-bar.component'
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { registerLocaleData } from '@angular/common';
+import localePt from "@angular/common/locales/pt"
 
+registerLocaleData(localePt)
 @NgModule({
   declarations: [
-    AppComponent,
-    LacamentSeachComponent,
-    HeaderBarComponent
+    AppComponent
   ],
+
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    InputTextModule,
-    ButtonModule,
-    TableModule,
-    TooltipModule
+    BrowserAnimationsModule,
+    LacamentModule,
+    PeopleModule,
+    CoreModule,
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

@@ -14,3 +14,11 @@
     margin: 0px auto;
   }
 }
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
