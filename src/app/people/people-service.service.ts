@@ -34,6 +34,14 @@ export class PeopleServiceService {
    })
 
   }
+  findAll():Promise<any>{
+    const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(`${this.personUrl}/all`,{headers}).toPromise()
+    .then(resp =>resp)
+    .catch(err => this.errorHandle.handle(err));
+
+  }
   delete(person:any):Promise<void>{
     let  params: HttpParams = new HttpParams();
     const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');

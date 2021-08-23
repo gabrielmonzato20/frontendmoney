@@ -1,3 +1,4 @@
+import { CategoryServiceService } from './../../category/category-service.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PeopleSearch } from './../people-search';
 import { PeopleServiceService } from './../people-service.service';
@@ -17,10 +18,11 @@ export class PersonSeachComponent implements OnInit {
     page:0,
   };
   totRecords:number;
-  constructor(private service:PeopleServiceService,private dialog:ConfirmationService,private msg:MessageService){}
-
+  constructor(private service:PeopleServiceService,private dialog:ConfirmationService,private msg:MessageService,private category:CategoryServiceService){}
+  ca;
   ngOnInit(): void {
     this.search();
+     this.ca = this.category.listAll()
   }
 
   search(page:number = 0):Promise<any>{

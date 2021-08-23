@@ -1,3 +1,4 @@
+import { Lacament } from './../core/model/Lacament.model';
 import { ErrorHandleService } from './../core/error-handle.service';
 import { HttpClient,HttpHeaders,HttpParams  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -34,9 +35,20 @@ export class LancamentServiceService {
   }
 
   delete(id:number):Promise<void>{
-    const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers:HttpHeaders = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
+
     return this.http.delete(`${this.lacamentUrl}/${id}`,{headers}).toPromise()
     .then(() => null)
+    .catch(err => this.handleError.handle(err));
+  }
+
+  save(lacament:Lacament) :Promise<Lacament>{
+    const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.post<Lacament>(`${this.lacamentUrl}`,lacament,{headers}).toPromise()
+    .then(resp => resp)
     .catch(err => this.handleError.handle(err));
   }
 }
