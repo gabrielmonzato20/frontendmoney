@@ -19,7 +19,8 @@ export class LognServiceService {
   isAcessTokenExpirect(): Boolean{
 
     const token = localStorage.getItem("token");
-
+    console.log(this.jwtdecode)
+    console.log( this.jwthelper.isTokenExpired(token))
     return !token || this.jwthelper.isTokenExpired(token);
   }
 
