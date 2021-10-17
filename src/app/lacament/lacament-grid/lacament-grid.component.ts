@@ -1,3 +1,4 @@
+import { LognServiceService } from 'src/app/security/logn-service.service';
 import {EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
@@ -15,10 +16,17 @@ export class LacamentGridComponent {
   @Output() methodDelete = new EventEmitter();
   @ViewChild("table") grid ;
 
+  constructor(private authService:LognServiceService){
+
+  }
+
   changePage(event:LazyLoadEvent){
     const currentPage :number= event.first!/event.rows!;
 
       this.methodLazy.emit( currentPage);
+  }
+  hasPermission(permission:string):Boolean{
+    return this.authService.hasPermission(permission);
   }
 
    delete(lacament:any){

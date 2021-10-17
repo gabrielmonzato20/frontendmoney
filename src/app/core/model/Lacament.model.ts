@@ -10,6 +10,6 @@ export class Lacament{
   observacao:string;
   pessoa:Person = new Person();
   categoria:Category= new Category();
-  typeLacament:typeLancament = 0;
+  tipo:typeLancament = 0;
 
 }

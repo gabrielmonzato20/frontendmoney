@@ -10,10 +10,10 @@
 
   </div>
   <ul class="navbar-menu" [hidden]="!showmenu">
-    <li class="navbar-user">TKSGD</li>
-    <li class="navbar-item"><a href="#">Lacament</a></li>
-    <li class="navbar-item"><a href="#">Person</a></li>
-    <li class="navbar-item"><a href="#">Lacament</a></li>
+    <li class="navbar-user">{{userloggin}}</li>
+    <li class="navbar-item" routerLinkActive="active" *ngIf="hasPermission('ROLE_PESQUISAR_LANCAMENTO')"><a routerLink="/lancament">Lacament</a></li>
+    <li class="navbar-item"  routerLinkActive="active" *ngIf="hasPermission('ROLE_PESQUISAR_PESSOA')"><a  routerLink="/person">Person</a></li>
+    <li class="navbar-item"  routerLinkActive="active" ><a  (click)= "logout()">Logout</a></li>
 
   </ul>
 

@@ -3,10 +3,10 @@
 <form (ngSubmit)="save(form)" #form>
 	 <div class="p-grid">
 <div class="p-col-12">
-	<h1>Lancamento</h1>
+	<h1>{{edit?"Edit":"New"}} Lancamento</h1>
 </div>
 <div class="p-col-12">
-	<p-selectButton  [options]="tips" #tip name="g" [(ngModel)]="lacament.typeLacament"></p-selectButton>
+	<p-selectButton  [options]="tips" #tip name="g" [(ngModel)]="lacament.tipo"></p-selectButton>
 </div>
 <div class="p-col-6 p-md-3 p-fluid">
         <label>Vencimento</label>
@@ -20,7 +20,7 @@
         <p-calendar dateFormat="dd/mm/yy"  [(ngModel)]="lacament.dataPagamento" name='datapagamento'></p-calendar>
       </div>
       <div class="p-col-12 p-md-9 p-fluid">
-        <label>Descrição{{ description.errors | json}}</label>
+        <label>Descrição</label>
         <input pInputText type="text" name="description"
         ngModel
         #description='ngModel'
@@ -48,7 +48,8 @@
       </div>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Categoria</label>
-       <p-dropdown [options]="categories" placeholder="Select a Categorie" name="categorio" [(ngModel)]="lacament.categoria.id"></p-dropdown>
+       <p-dropdown [options]="categories" placeholder="Select a Categorie" name="categoria" [(ngModel)]="lacament.categoria.id"></p-dropdown>
+
       </div>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Pessoa</label>
@@ -59,9 +60,9 @@
         <textarea pInputTextarea rows="3" name='obs' [(ngModel)]="lacament.observacao"></textarea>
       </div>
       <div class="p-col-12">
-        <button pButton type="submit" label="Salvar"></button>
-        <button pButton type="button" label="Novo" class="p-button-info"></button>
-        <a href="javascript:;">Voltar para a pesquisa</a>
+        <button pButton type="submit" label="Salvar" [disabled]="form.invalid"></button>
+        <button pButton type="button" label="Novo" class="p-button-info" (click)= "new(form)"></button>
+        <a routerLink='/lancament'>Voltar para a pesquisa</a>
       </div>
     </div>
 </form>

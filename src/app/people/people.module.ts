@@ -16,6 +16,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { HttpClientModule } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
+import { PeopleRouterModule } from './people-routing.module';
 
 
 
@@ -35,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     InputMaskModule,
     FormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    PeopleRouterModule
 
   ],
   exports: [PersonComponent,PersonSeachComponent]

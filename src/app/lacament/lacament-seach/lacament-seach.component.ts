@@ -3,6 +3,8 @@ import { MessageService, ConfirmationService } from 'primeng/api';
 import { LacamentSearch } from '../lacament-search';
 import { LancamentServiceService } from './../lancament-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { title } from 'process';
 
 @Component({
   selector: 'app-lacament-seach',
@@ -16,11 +18,13 @@ export class LacamentSeachComponent implements OnInit {
   lacaments = [];
   totElements:number;
   filter : LacamentSearch
-  constructor(private lacamentService:LancamentServiceService,private msgSerivce:MessageService,private confirmService:ConfirmationService) { }
+  constructor(private lacamentService:LancamentServiceService,private msgSerivce:MessageService,
+    private confirmService:ConfirmationService,private title:Title) { }
 
   ngOnInit(): void {
    this.search();
    console.log(this.lacaments)
+   this.title.setTitle("Search Lancament")
   }
 
   search(page:number = 0): Promise<any>{

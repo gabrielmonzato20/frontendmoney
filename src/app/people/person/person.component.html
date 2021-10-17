@@ -1,62 +1,63 @@
 <div class="container">
 
-<form ngSubmit="save(form)">
+<form (ngSubmit)="save(form)" #form>
 <div class="p-grid">
 <div class="p-col-12">
-<h1>Person</h1>
+<h1>{{isEdit?"Edit":"New"}} Person</h1>
+
 </div>
 <div class="p-col-12 p-fluid">
 <label>Name</label>
-<input pInputText type="text" ngModel #name="ngModel" name="name" required minlength=5>
+<input pInputText type="text" ngModel #name="ngModel" name="name" [(ngModel)]="person.name" required minlength=5>
  <app-message [control]="name" error="required" message='No Name please,inform then.'></app-message>
 <app-message [control]="name" error="minlength" message=' Name need have {{name.errors?.minlength?.requiredLength}}  caracters  please fix then.'></app-message>
 </div>
 <div class="p-col-12 p-md-9 p-fluid">
 <label>Logradouro</label>
-<input pInputText type="text" #logradouro="ngModel" ngModel name="logradouro" required>
+<input pInputText type="text" #logradouro="ngModel" ngModel name="logradouro"  [(ngModel)]="person.adress.logradouro"required>
  <app-message [control]="logradouro" error="required" message='No Logradouro please,inform then.'></app-message>
 
 </div>
 
 <div class="p-col-12 p-md-3 p-fluid">
 <label>Number</label>
-<input pInputText type="text" name="number" #number="ngModel" ngModel required>
+<input pInputText type="text" name="number" #number="ngModel" ngModel  [(ngModel)]="person.adress.housenumber"required>
  <app-message [control]="number " error="required" message='No Number please,inform then.'></app-message>
 
 </div>
 
 <div class="p-col-12 p-md-4 p-fluid">
 <label>Complement</label>
-<input pInputText type="text">
+<input pInputText type="text"  name="complement"   [(ngModel)]="person.adress.complement">
 </div>
 <div class="p-col-12 p-md-4 p-fluid">
 <label>nerberhood</label>
-<input pInputText type="text" ngModel name="nerberhood" required #nerberhood="ngModel">
+<input pInputText type="text" ngModel name="nerberhood" required #nerberhood="ngModel" [(ngModel)]="person.adress.neiberhood">
  <app-message [control]="nerberhood " error="required" message='No Nerberhood please,inform then.'></app-message>
 
 </div>
 <div class="p-col-12 p-md-4 p-fluid">
 <label>CEP</label>
-<p-inputMask mask="99.999-999" ngModel #cep="ngModel" required name="cep"></p-inputMask>
+<p-inputMask mask="99.999-999" ngModel #cep="ngModel"  [(ngModel)]="person.adress.zipcode" required name="cep"></p-inputMask>
  <app-message [control]="cep " error="required" message='No cep please,inform then.'></app-message>
 
 </div>
 <div class="p-col-12 p-md-6 p-fluid">
 <label>City</label>
-<input pInputText type="text" #city="ngModel" required ngModel name="city">
+<input pInputText type="text" #city="ngModel" required ngModel name="city" [(ngModel)]="person.adress.city">
  <app-message [control]="city " error="required" message='No City please,inform then.'></app-message>
 
 </div>
 <div class="p-col-12 p-md-6 p-fluid">
 <label>State</label>
-<input pInputText type="text" name='state' ngModel required #state="ngModel">
+<input pInputText type="text" name='state' ngModel required #state="ngModel" [(ngModel)]="person.adress.statey">
  <app-message [control]="state " error="required" message='No State please,inform then.'></app-message>
 
 </div>
 <div class="p-col-12">
 <button pButton type='submit' label="Save"></button>
 <button pButton type="button" class="p-button-info" label="New"></button>
-<a href="#">Back to Search</a>
+<a routerLink="/person">Back to Search</a>
 </div>
 </div>
 </form>

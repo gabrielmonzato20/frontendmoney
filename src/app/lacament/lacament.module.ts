@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { HttpClientModule } from '@angular/common/http';
+import { LacamentRoutingModule } from './lacament-routing.module';
 
 
 
@@ -39,8 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     InputMaskModule,
     FormsModule,
     SharedModule,
-    HttpClientModule
-
+    HttpClientModule,
+    LacamentRoutingModule
   ],
   exports: [
     LancamentComponent,

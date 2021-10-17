@@ -25,7 +25,7 @@
           </td>
           <td class="col-action-body">
 
-            <a  pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition='top'></a>
+            <a  pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition='top' [routerLink]="['/lancament',lacament.id]" [disabled] = "hasPermission('ROLE_REMOVER_LANCAMENTO')"></a>
             <button pButton icon='pi pi-trash' pTooltip='Excluir' tooltipPosition='top' (click)="delete(lacament)"></button>
           </td>
         </tr>

@@ -41,3 +41,6 @@ padding: 15px;
 .navbar-item a:hover{
   color:#fff;
 }
+ .navbar-item.active {
+   background-color:#494541;
+ }

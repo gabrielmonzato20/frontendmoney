@@ -3,6 +3,6 @@ import { Adress } from "./adress.model";
 export class Person{
   id:number ;
   name:string;
-  adress:Adress;
+  adress:Adress = new Adress();
   active: boolean;
 }

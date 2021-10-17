@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { Person } from './../core/model/Person.model';
 import { ErrorHandleService } from './../core/error-handle.service';
 import { PeopleSearch } from './people-search';
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
@@ -8,8 +10,11 @@ import { Injectable } from '@angular/core';
 })
 export class PeopleServiceService {
 
-  personUrl:string="http://localhost:8080/persons"
-  constructor(private http:HttpClient,private errorHandle:ErrorHandleService) { }
+  personUrl:string;
+  constructor(private http:HttpClient,private errorHandle:ErrorHandleService) {
+      this.personUrl = `${environment.apiUrl}/persons`;
+
+  }
 
   search(filter:PeopleSearch):Promise<any>{
    let  params: HttpParams = new HttpParams();
@@ -56,11 +61,33 @@ export class PeopleServiceService {
   }
 
   changeStatus(id:number,status:boolean):Promise<void>{
-    const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    const headers:HttpHeaders = new HttpHeaders()
   .append("Content-Type","application/json");
 
     return this.http.put(`${this.personUrl}/${id}/active`,status,{headers}).toPromise()
     .then(resp => null)
+    .catch(err => this.errorHandle.handle(err))
+  }
+
+  save(person:Person):Promise<Person | any>{
+    const headers:HttpHeaders = new HttpHeaders()
+    .append("Content-Type","application/json");
+    return this.http.post<Person>(`${this.personUrl}`,person,{headers}).toPromise()
+    .then(resp =>resp)
+    .catch(err => {this.errorHandle.handle(err)});
+  }
+  findById(id:number):Promise<Person |any>{
+    const headers:HttpHeaders = new HttpHeaders()
+    .append("Content-Type","application/json");
+    return this.http.get<Person>(`${this.personUrl}/${id}`,{headers}).toPromise()
+    .then(response => response)
+    .catch(err => this.errorHandle.handle(err));
+  }
+  update(person:Person):Promise<Person |any >{
+    let headers:HttpHeaders = new HttpHeaders()
+    .append("Content-Type","application/json");
+    return this.http.put<Person>(`${this.personUrl}/${person.id}`,person,{headers}).toPromise()
+    .then(resp => resp)
     .catch(err => this.errorHandle.handle(err))
   }
 }

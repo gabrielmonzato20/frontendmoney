@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { ErrorHandleService } from './../core/error-handle.service';
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpParams  } from '@angular/common/http';
@@ -6,11 +7,14 @@ import { HttpClient,HttpHeaders,HttpParams  } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CategoryServiceService {
-  urlCatgeory = "http://localhost:8080/categorys"
-  constructor(private http:HttpClient,private errorHandle:ErrorHandleService) { }
+  urlCatgeory:string;
+  constructor(private http:HttpClient,private errorHandle:ErrorHandleService) {
+this.urlCatgeory = `${environment.apiUrl}/categorys`;
+
+   }
 
   listAll(): Promise<any>{
-    const headers:HttpHeaders = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers:HttpHeaders = new HttpHeaders();
     return this.http.get(`${this.urlCatgeory}`,{headers}).toPromise()
     .then((resp) => {
       return resp;

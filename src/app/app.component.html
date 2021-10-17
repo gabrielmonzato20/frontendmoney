@@ -1,4 +1,4 @@
-<app-header-bar></app-header-bar>
+<app-header-bar *ngIf="showbar()"></app-header-bar>
 <router-outlet></router-outlet>
 <p-toast></p-toast>
 <p-confirmDialog header="Confirm" icon="pi pi-question-circle" #confirm>
