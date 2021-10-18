@@ -13,7 +13,7 @@ export class MoneyInterceptor implements HttpInterceptor{
 
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(!req.url.includes("/oauth/token")&& !this.auth.isAcessTokenExpirect()
+    if(!req.url.includes("/oauth/token")&& this.auth.isAcessTokenExpirect()
     &&!req.url.includes("/tokens/revoke") ){
       return from(this.auth.getNewAcessToken()).pipe(
                   mergeMap(() => {
