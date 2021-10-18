@@ -77,6 +77,7 @@ export class LognServiceService {
     const body = 'grant_type=refresh_token';
     return this.http.post(`${this.urlLogin}`,body,{headers,withCredentials:true}).toPromise()
     .then(response =>{
+      console.log(response);
       this.decodetoken(response['access_token'])
     })
     .catch(err =>{
