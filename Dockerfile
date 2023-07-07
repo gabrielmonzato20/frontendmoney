@@ -1,5 +1,5 @@
 # Stage 1: Build the Angular application
-FROM node:14.17.0-alpine as build
+FROM node:16.14.0-alpine as build
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build --prod
 
 # Stage 2: Serve the built Angular app using the Angular development server
-FROM node:14.17.0-alpine
+FROM node:16.14.0-alpine
 
 WORKDIR /app
 
