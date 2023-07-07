@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 RUN npm run build --prod
-
+EXPOSE 4200
 # Start Nginx
 CMD ["node", "server.ts"]
