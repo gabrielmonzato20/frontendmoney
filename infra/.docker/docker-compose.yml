@@ -3,7 +3,7 @@ services:
   angular:
     image: ${DOCKER_IMAGE}
     ports:
-      - 4200:4200
+      - 4200:80
     environment:
             - API_URL=http://manage-system:8080
   frontend:
