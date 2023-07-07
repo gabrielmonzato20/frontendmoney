@@ -14,7 +14,7 @@ FROM node:14.17.0-alpine
 
 WORKDIR /app
 
-COPY --from=build /app/dist/your-app-name .
+COPY --from=build /app/dist/frontend/ .
 
 # Expose port 4200
 EXPOSE 4200
