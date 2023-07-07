@@ -1,0 +1,36 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t gabrielmonzato/systemmanagerfrontend:latest .
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker image to Docker Hub
+        run: docker push gabrielmonzato/systemmanagerfrontend:latest
+      
+      - name: Run Ansible playbook
+        env:
+          DOCKER_IMAGE: gabrielmonzato/systemmanagerfrontend:latest
+          DOCKERFILE_SRC: ${{ github.workspace }}/infra/.docker/docker-compose.yml
+
+        run: |
+          echo "project_src: infra/.docker/docker-compose.yml" > ansible_vars.yml
+          ansible-playbook  -i  infra/.ansible/servers.ini  infra/.ansible/cd.yml --extra-vars "DOCKER_IMAGE=${DOCKER_IMAGE}"  --extra-vars "DOCKERFILE_SRC=${DOCKERFILE_SRC}" --extra-vars "@ansible_vars.yml"
+     
