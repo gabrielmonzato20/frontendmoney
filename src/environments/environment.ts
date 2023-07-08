@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://java_app:8080"
+  apiUrl: "http://javaapp:8080"
 };
 
 /*
