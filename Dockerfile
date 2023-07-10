@@ -1,9 +1,9 @@
-FROM node:14 as build
+FROM node:16 as build
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN ng build --prod
+RUN npm run build --prod
 
 # Stage 2: Setup Nginx to serve the Angular application
 FROM nginx:latest
